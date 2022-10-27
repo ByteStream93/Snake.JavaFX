@@ -32,11 +32,13 @@ public class Main extends Application {
         primaryStage.setTitle("Snake");
         primaryStage.setScene(gameScene);
         primaryStage.show();
-        drawTable(graphicsContext);
+        tick();
 
     }
 
-
+public void tick(){
+        drawTable(graphicsContext);
+}
 
 
 
