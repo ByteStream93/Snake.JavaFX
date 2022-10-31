@@ -8,15 +8,17 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
     GraphicsContext graphicsContext;
-    private final static int rows = 20;
-    private final static int columns = 20;
-    private final static int fieldsize = 800 / 20;
+
+    public static ArrayList<Snake> snake = new ArrayList<Snake>();
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,29 +34,20 @@ public class Main extends Application {
         primaryStage.setTitle("Snake");
         primaryStage.setScene(gameScene);
         primaryStage.show();
+        Food.generateFood();
+        snakeSetup();
         tick();
 
     }
 
 public void tick(){
-        drawTable(graphicsContext);
+        Table.drawTable(graphicsContext);
+        Food.drawFood(graphicsContext);
+        Snake.drawSnake(graphicsContext);
+        Actions.checkEat();
 }
 
-
-
-    public void drawTable(GraphicsContext graphicsContext) {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-
-                if ((i+j) % 2 == 0){
-                    graphicsContext.setFill(Color.GREEN);
-                } else {
-                    graphicsContext.setFill(Color.DARKGREEN);
-                }
-                graphicsContext.fillRect(i*fieldsize,j*fieldsize,fieldsize,fieldsize);
-            }
-        }
-
-
-    }
+public void snakeSetup(){
+        snake.add(0,new Snake(10,10));
+}
 }
