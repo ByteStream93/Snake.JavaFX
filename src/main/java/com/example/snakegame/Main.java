@@ -43,6 +43,7 @@ public class Main extends Application {
 public void tick(){
         Table.drawTable(graphicsContext);
         Food.drawFood(graphicsContext);
+        Actions.snakeMovement();
         Snake.drawSnake(graphicsContext);
         Actions.checkEat();
 }
