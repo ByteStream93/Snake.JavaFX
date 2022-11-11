@@ -6,7 +6,7 @@ import javafx.scene.input.KeyEvent;
 
 public class Keys {
 
-   public static int direction = KeyCode.DOLLAR.getCode();
+   public static int direction;
 
    public static int downArrowCode = KeyCode.DOWN.getCode();
    public static int upArrowCode = KeyCode.UP.getCode();
@@ -16,8 +16,17 @@ public class Keys {
    public static void keyWatch(KeyEvent event){
 
       if(event.getCode()==KeyCode.UP){
-         for(int i = 0; i<1;i++) {
-            Main.snake.get(i).setY_coordinate(Main.snake.get(i).getY_coordinate() - 1);
+         if(direction != KeyCode.DOWN.getCode()){
+            direction = KeyCode.UP.getCode();
+         }
+         if(direction != KeyCode.UP.getCode()){
+            direction = KeyCode.DOWN.getCode();
+         }
+         if(direction != KeyCode.LEFT.getCode()){
+            direction = KeyCode.RIGHT.getCode();
+         }
+         if(direction != KeyCode.RIGHT.getCode()){
+            direction = KeyCode.LEFT.getCode();
          }
       }
 

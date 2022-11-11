@@ -1,10 +1,12 @@
 package com.example.snakegame;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -17,7 +19,11 @@ public class Main extends Application {
     }
     GraphicsContext graphicsContext;
 
-    public static ArrayList<Snake> snake = new ArrayList<Snake>();
+    public static ArrayList<Snake> snake = new ArrayList<Snake>(){{
+        add(0,new Snake(10,10));
+        add(1,new Snake(10,11));
+        add(2,new Snake(10,12));
+    }};
 
 
     @Override
@@ -28,6 +34,13 @@ public class Main extends Application {
         gameGroup.getChildren().add(gameCanvas);
         Scene gameScene = new Scene(gameGroup);
         graphicsContext = gameCanvas.getGraphicsContext2D();
+        gameCanvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+            Keys.keyWatch(event);
+            Actions.snakeMovement();
+            }
+        });
 
 
 
@@ -43,7 +56,6 @@ public class Main extends Application {
 public void tick(){
         Table.drawTable(graphicsContext);
         Food.drawFood(graphicsContext);
-        Actions.snakeMovement();
         Snake.drawSnake(graphicsContext);
         Actions.checkEat();
 }

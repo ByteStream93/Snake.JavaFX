@@ -1,6 +1,12 @@
 package com.example.snakegame;
 
+import javafx.scene.canvas.GraphicsContext;
+
+
 public class Actions {
+
+    public static GraphicsContext graphicsContext;
+
     static int direction = Keys.direction;
     public static void checkEat(){
         if(Main.snake.get(0).getX_coordinate() == Food.real_x && Main.snake.get(0).getY_coordinate() == Food.value_y){
@@ -11,6 +17,7 @@ public class Actions {
     public static void snakeMovement(){
         Snake.moveHead();
         Snake.moveSnakeBody();
+        Snake.drawSnake(graphicsContext);
     }
 
 }
