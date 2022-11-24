@@ -15,19 +15,7 @@ Snake(int x_coordinate,int y_coordinate){
 
 }
 
-public static void drawSnake(GraphicsContext graphicsContext){
 
-    for(int i = 0; i<Main.snake.size();i++){
-        if(i!=0){
-            graphicsContext.setFill(Color.BLUE);
-            graphicsContext.fillRect(Main.snake.get(i).x_coordinate* Table.getFieldsize(),Main.snake.get(i).y_coordinate* Table.getFieldsize(),Table.getFieldsize(),Table.getFieldsize());
-        }else{
-            graphicsContext.setFill(Color.SKYBLUE);
-            graphicsContext.fillRect(Main.snake.get(i).x_coordinate* Table.getFieldsize(),Main.snake.get(i).y_coordinate* Table.getFieldsize(),Table.getFieldsize(),Table.getFieldsize());
-        }
-
-    }
-}
 
     public int getX_coordinate() {
         return x_coordinate;
@@ -46,23 +34,27 @@ public static void drawSnake(GraphicsContext graphicsContext){
     }
 
     public static void moveHead(){
-        if(Actions.direction == Keys.downArrowCode){
-                Main.snake.get(0).setY_coordinate(Main.snake.get(0).getY_coordinate()+1);
-        }
-        if(Actions.direction == Keys.upArrowCode){
-                Main.snake.get(0).setY_coordinate(Main.snake.get(0).getY_coordinate()-1);
-        }
-        if(Actions.direction == Keys.leftArrowCode){
-                Main.snake.get(0).setY_coordinate(Main.snake.get(0).getY_coordinate()-1);
-        }
-        if(Actions.direction == Keys.rightArrowCode){
-                Main.snake.get(0).setY_coordinate(Main.snake.get(0).getY_coordinate()+1);
-        }
+    switch  (Main.currentDirection){
+
+        case 0:
+        Main.snake.get(0).setY_coordinate(Main.snake.get(0).getY_coordinate()-1);
+        break;
+
+        case 1:
+        Main.snake.get(0).setY_coordinate(Main.snake.get(0).getY_coordinate()+1);
+        break;
+
+        case 2:
+            Main.snake.get(0).setX_coordinate(Main.snake.get(0).getX_coordinate()+1);
+            break;
+
+        case 3:
+            Main.snake.get(0).setX_coordinate(Main.snake.get(0).getX_coordinate()-1);
+            break;
     }
-    public static void moveSnakeBody(){
-        for (int i = Main.snake.size();i>0;i--){
-            Main.snake.get(i).setY_coordinate(Main.snake.get(i-1).getY_coordinate());
-            Main.snake.get(i).setX_coordinate(Main.snake.get(i-1).getX_coordinate());
     }
-}
-}
+
+    }
+
+
+
