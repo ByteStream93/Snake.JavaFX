@@ -1,16 +1,12 @@
 package com.example.snakegame;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -19,7 +15,7 @@ public class Main extends Application {
         launch(args);
     }
 
-    GraphicsContext graphicsContext;
+    public static GraphicsContext graphicsContext;
     public static int currentDirection = 0;
 
     public static ArrayList<Snake> snake = new ArrayList<>() {{
@@ -37,39 +33,30 @@ public class Main extends Application {
         gameGroup.getChildren().add(gameCanvas);
         Scene gameScene = new Scene(gameGroup);
         graphicsContext = gameCanvas.getGraphicsContext2D();
-        gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if(KeyCode.UP == event.getCode() && currentDirection != 1){
-                    currentDirection = 0;
-                }
-                if(KeyCode.DOWN == event.getCode() && currentDirection != 0){
-                    currentDirection = 1;
-                }
-                if(KeyCode.RIGHT == event.getCode() && currentDirection != 3){
-                    currentDirection = 2;
-                }
-                if(KeyCode.LEFT == event.getCode() && currentDirection != 2){
-                    currentDirection = 3;
-                }
-
+        gameScene.setOnKeyPressed(event -> {
+            if(KeyCode.UP == event.getCode() && currentDirection != 1){
+                currentDirection = 0;
             }
+            if(KeyCode.DOWN == event.getCode() && currentDirection != 0){
+                currentDirection = 1;
+            }
+            if(KeyCode.RIGHT == event.getCode() && currentDirection != 3){
+                currentDirection = 2;
+            }
+            if(KeyCode.LEFT == event.getCode() && currentDirection != 2){
+                currentDirection = 3;
+            }
+
         });
-
-
 
         primaryStage.setTitle("Snake");
         primaryStage.setScene(gameScene);
         primaryStage.show();
         Food.generateFood();
-        tick();
+        Refresher.refresh.start();
 
     }
 
-    public void tick() {
-        Table.drawTable(graphicsContext);
-        Food.drawFood(graphicsContext);
-        Actions.snakeMovement();
-        Actions.checkEat();
-    }
+
 }
+

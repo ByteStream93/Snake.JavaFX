@@ -1,13 +1,13 @@
 package com.example.snakegame;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Tab;
 import javafx.scene.paint.Color;
 
 public class Snake {
 
 public int x_coordinate;
 public int y_coordinate;
+
 
 Snake(int x_coordinate,int y_coordinate){
     this.x_coordinate = x_coordinate;
@@ -51,7 +51,29 @@ Snake(int x_coordinate,int y_coordinate){
         case 3:
             Main.snake.get(0).setX_coordinate(Main.snake.get(0).getX_coordinate()-1);
             break;
+        }
     }
+
+    public static void moveSnakeBody() {
+        for (int i = Main.snake.size() - 1; i > 0; i--) {
+            Main.snake.get(i).setX_coordinate(Main.snake.get(i - 1).getX_coordinate());
+            Main.snake.get(i).setY_coordinate(Main.snake.get(i - 1).getY_coordinate());
+        }
+        drawSnakeBody(Main.graphicsContext);
+    }
+    public static void drawSnakeBody(GraphicsContext graphicsContext){
+
+    for(int i = 0; i<Main.snake.size();i++){
+        if(i!=0){
+            graphicsContext.setFill(Color.DARKBLUE);
+        }
+        graphicsContext.fillRect(Main.snake.get(i).getX_coordinate()*Table.getFieldsize(),Main.snake.get(i).getY_coordinate()*Table.getFieldsize(),Table.getFieldsize(),Table.getFieldsize());
+    }
+    }
+
+    public static void drawSnakeHead(GraphicsContext graphicsContext){
+        graphicsContext.setFill(Color.SKYBLUE);
+        graphicsContext.fillRect(Main.snake.get(0).getX_coordinate()*Table.getFieldsize(),Main.snake.get(0).getY_coordinate()*Table.getFieldsize(),Table.getFieldsize(),Table.getFieldsize());
     }
 
     }
