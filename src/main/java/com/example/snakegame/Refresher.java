@@ -13,6 +13,7 @@ public class Refresher {
                 Actions.tick();
                 lastUpdate = now;
             }
+
         }
     };
 }
