@@ -9,7 +9,7 @@ public class Refresher {
         private long lastUpdate = 0;
         @Override
         public void handle(long now) {
-            if(now-lastUpdate >= 66666666 ){
+            if(now-lastUpdate >= 99999999){
                 Actions.tick();
                 lastUpdate = now;
             }
