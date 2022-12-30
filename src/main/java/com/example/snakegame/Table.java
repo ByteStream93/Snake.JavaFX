@@ -15,10 +15,11 @@ public class Table {
             for (int j = 0; j < columns; j++) {
 
                 if ((i+j) % 2 == 0){
-                    graphicsContext.setFill(Color.GREEN);
-                } else {
+                    graphicsContext.setFill(Color.GREEN);                    
+                } else {                   
                     graphicsContext.setFill(Color.DARKGREEN);
                 }
+                
                 graphicsContext.fillRect(i*fieldsize,j*fieldsize,fieldsize,fieldsize);
             }
         }
