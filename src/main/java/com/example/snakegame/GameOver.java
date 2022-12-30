@@ -29,6 +29,7 @@ public class GameOver {
          }
         }
         if (endDrawing==1){
+            
             graphicsContext.setFont(Font.font(140));
             graphicsContext.setStroke(Color.WHITE);
             graphicsContext.strokeText("YOU DIED!",2*Table.getFieldsize(),11*Table.getFieldsize());
